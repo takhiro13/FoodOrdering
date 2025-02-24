@@ -12,6 +12,7 @@ const Product = require("./models/product");
 
 
 
+
 app.set('view engine', 'ejs');
 
 const PORT = 3000;
