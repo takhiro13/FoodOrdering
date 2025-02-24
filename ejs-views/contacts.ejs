@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, #c81d25, #000); /* Красный сверху, черный снизу */
+            color: #000; /* Черный текст */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav {
+            width: 100%;
+            background: linear-gradient(to bottom, #c81d25, #000); /* Красный сверху, черный снизу */
+            padding: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff; /* Белый текст */
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        nav ul li a:hover {
+            background: #c81d25;
+            transform: scale(1.1);
+        }
+
+        .contacts-container {
+            width: 100%;
+            max-width: 800px;
+            background: #fff; /* Белый фон */
+            color: #000; /* Черный текст */
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15); /* Тень */
+            padding: 2rem;
+            animation: fadeIn 0.5s ease-in-out;
+            margin-top: 80px;
+        }
+
+        .contacts-container h2 {
+            font-size: 1.8rem;
+            color: #c81d25; /* Красный заголовок */
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        ul.contacts {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.contacts li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Черная полупрозрачная линия */
+            transition: background-color 0.3s;
+        }
+
+        ul.contacts li:last-child {
+            border-bottom: none;
+        }
+
+        ul.contacts li:hover {
+            background: rgba(200, 29, 37, 0.1); /* Легкий красный оттенок при наведении */
+        }
+
+        ul.contacts li a {
+            text-decoration: none;
+            color: #c81d25; /* Красный текст */
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        ul.contacts li a:hover {
+            color: #000; /* Черный текст при наведении */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/products">Menu</a></li>
+        <li><a href="/add-product">New Product</a></li>
+        <li><a href="/contacts">Contacts</a></li>
+        <li><a href="/cart">View Cart</a></li>
+        <li><a href="/orders">Orders</a></li>
+    </ul>
+</nav>
+
+<div class="contacts-container">
+    <h2>This work was done by</h2>
+    <ul class="contacts">
+        <% if (contacts.length) { %>
+            <% contacts.forEach(({ link, name }) => { %>
+                <li>
+                    <a href="<%= link %>" target="_blank"><%= name %></a>
+                </li>
+            <% }) %>
+        <% } %>
+    </ul>
+</div>
+</body>
+</html>

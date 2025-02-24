@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      box-sizing: border-box;
+      background: #f8f8f8; /* Светло-серый фон */
+      color: #000; /* Черный текст */
+      min-height: 100vh;
+    }
+
+    nav {
+      width: 100%;
+      background: linear-gradient(to bottom, #c81d25, #000); /* Красный сверху, черный снизу */
+      padding: 1rem 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff; /* Белый текст */
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    nav ul li a:hover {
+      background: #c81d25; /* Красный при наведении */
+      transform: scale(1.1);
+    }
+
+    .product-container {
+      width: 90%;
+      max-width: 800px;
+      margin: 100px auto 30px;
+      padding: 2rem;
+      background: linear-gradient(to bottom, #c81d25, #000); /* Красный сверху, черный снизу */
+      color: #fff; /* Белый текст */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .product-container h2 {
+      text-decoration: none;
+      color: #fff; /* Белый текст */
+      font-size: 1.5rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .product-container h1 {
+      font-size: 2.2rem;
+      text-align: center;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1rem;
+    }
+
+    .product-container .info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9); /* Белый с небольшой прозрачностью */
+      margin-bottom: 1.5rem;
+    }
+
+    .product-container p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 1rem 0;
+      text-align: justify;
+    }
+
+    .comments-section {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      width: 90%;
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 1.5rem;
+      background: #f8f8f8; /* Светлый фон */
+      color: #000; /* Черный текст */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .comments-section h2 {
+      font-size: 1.8rem;
+      color: #c81d25; /* Красный заголовок */
+      margin-bottom: 1.5rem;
+    }
+
+    .comments-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .comments-list li {
+      background: #fff; /* Белый фон */
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .comments-list li p {
+      margin: 0.5rem 0;
+    }
+
+    .comments-list li p strong {
+      color: #c81d25; /* Красное выделение */
+    }
+
+    .not-logged-in {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .not-logged-in p {
+      color: #000; /* Черный текст */
+    }
+
+    .not-logged-in a {
+      color: #c81d25; /* Красная ссылка */
+      text-decoration: none;
+    }
+
+    .not-logged-in a:hover {
+      color: #000; /* Черный при наведении */
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .comments-section form {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 98%;
+      padding: 1rem;
+      background-color: #c81d25; /* Красный фон формы */
+      color: #fff; /* Белый текст */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    form textarea {
+      flex: 1;
+      resize: none;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: none;
+      color: #000; /* Черный текст */
+    }
+
+    form button {
+      padding: 0.7rem 1.5rem;
+      background: #000; /* Черный фон кнопки */
+      color: #fff; /* Белый текст кнопки */
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out, transform 0.2s;
+    }
+
+    form button:hover {
+      background: #c81d25; /* Красный при наведении */
+      transform: scale(1.1);
+    }
+
+    img {
+      max-width: 100%; /* Ширина изображения адаптируется под ширину контейнера */
+      height: auto; /* Высота изменяется пропорционально ширине */
+      display: block; /* Убирает лишние отступы (если изображение обернуто) */
+      margin: 0 auto; /* Центрирует изображение внутри родителя */
+    }
+
+    form button:active {
+      transform: scale(1);
+    }
+
+    .add-to-cart {
+      padding: 0.7rem 1.5rem;
+      background: #c81d25; /* Черный фон кнопки */
+      color: #fff; /* Белый текст кнопки */
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out, transform 0.2s;
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/products">Menu</a></li>
+    <li><a href="/add-product">New Product</a></li>
+    <li><a href="/contacts">Contacts</a></li>
+    <li><a href="/cart">View Cart</a></li>
+    <li><a href="/orders">Orders</a></li>
+  </ul>
+</nav>
+
+<div class="product-container">
+  <% if (product.image && product.image.data) { %>
+    <img src="data:<%= product.image.contentType %>;base64,<%= product.image.data.toString('base64') %>" alt="Product Image"  >
+  <% } %>
+  <div class="product-meta">
+    <h2><%= product.title %></h2>
+    <p> <%= product.createdAt.toLocaleDateString() %></p>
+  </div>
+  <p><%= product.text %></p>
+  <h2>⭐<%= averageRating %></h2>
+    <h2><strong>Cost:</strong> $<%= product.cost %></h2>
+  <div class="product-meta">
+    <p><strong>Author:</strong> <%= product.author %></p>
+
+    <% if (product.author === username) { %>
+      <div class="buttons">
+        <form action="/edit/<%= product._id %>" method="GET">
+          <button type="submit">Edit</button>
+        </form>
+        <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </div>
+    <% } else { %>
+      <div class="buttons-add-to-cart">
+        <form action="/cart" method="POST">
+          <input type="hidden" name="productId" value="<%= product._id %>">
+          <input type="hidden" name="quantity" value="1">
+          <button class="add-to-cart" type="submit">Add to Cart</button>
+        </form>
+      </div>
+    <% } %>
+
+
+  </div>
+</div>
+
+<section class="comments-section">
+  <h2>Comments</h2>
+  <ul class="comments-list">
+    <% product.comments.forEach(comment => { %>
+      <li>
+        <p><strong><%= comment.author %>:</strong> </p>
+        <p><%= comment.text %></p>
+        <p>⭐<%= comment.rating %></p>
+        <p><small><%= product.createdAt.toLocaleTimeString('eu-EU', { hour: '2-digit', minute: '2-digit'}) %>,<%= product.createdAt.toLocaleDateString() %></small></p>
+      </li>
+    <% }) %>
+  </ul>
+
+  <%
+  const userCommented = product.comments.some(comment => comment.author === username);
+  %>
+
+  <% if (username && !userCommented) { %>
+    <form action="/products/<%= product._id %>/comments" method="POST">
+      <textarea name="text" placeholder="Leave a comment" required></textarea>
+      <label for="rating" style="color: white">Rate this product (1-10):</label>
+      <input type="number" name="rating" min="1" max="10" required>
+      <button type="submit">Add Comment</button>
+    </form>
+  <% } else if (!username) { %>
+    <div class="not-logged-in">
+      <p>You must <a href="/login">log in</a> to comment.</p>
+    </div>
+  <% } else { %>
+    <p><em>You have already commented on this product.</em></p>
+  <% } %>
+</section>
+
+<script>
+  function autoResizeField(field) {
+    field.style.height = 'auto';
+    field.style.height = field.scrollHeight + 'px';
+  }
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('textarea, input[type="text"]');
+
+    elements.forEach((field) => {
+      autoResizeField(field);
+      field.addEventListener('input', () => autoResizeField(field));
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const resizableFields = document.querySelectorAll('textarea');
+
+    resizableFields.forEach((field) => {
+      autoResizeField(field);
+      field.addEventListener('input', () => autoResizeField(field));
+    });
+  });
+</script>
+</body>
+</html>
