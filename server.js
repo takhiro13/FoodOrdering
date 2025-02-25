@@ -12,7 +12,6 @@ const Product = require("./models/product");
 
 
 
-
 app.set('view engine', 'ejs');
 
 const PORT = 3000;
@@ -20,7 +19,7 @@ const db = 'mongodb+srv://takhiro:tHmBjnBoyulsYvSL@web2.ww64w.mongodb.net/FoodOr
 
 mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then((res) => console.log('Connected to MongoDB!'))
+    .then((res) => console.log('Connected to DB'))
     .catch((error) => console.log(error));
 
 

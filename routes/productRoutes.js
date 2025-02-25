@@ -16,7 +16,7 @@ const isAuthorMiddleware = async (req, res, next) => {
             return next();
         }
         return res.status(403).render(createPath('error'), { title: 'Error', message: 'Forbidden: You are not the author of this product' });
-    } catch (error) {a
+    } catch (error) {
         console.error(error);
         res.status(500).render(createPath('error'), { title: 'Error', message: 'An error occurred' });
     }
