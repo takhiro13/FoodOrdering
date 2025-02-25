@@ -20,7 +20,7 @@ const db = 'mongodb+srv://takhiro:tHmBjnBoyulsYvSL@web2.ww64w.mongodb.net/FoodOr
 
 mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then((res) => console.log('Connected to DB'))
+    .then((res) => console.log('Connected to MongoDB!'))
     .catch((error) => console.log(error));
 
 
